@@ -14,7 +14,12 @@ int main() {
 	printf("Enter the DNA sequecen: ");
 	//read up to 9999 characters
 	scanf("%9999s", dna);
+	//char * dnaptr = dna;
+	//int i = 0;
+	//printf("%s", dna);
+
 	if(verify(dna) == -1){
+		printf("-1");
 		return -1;
 	}
 	else{
@@ -36,9 +41,10 @@ int main() {
 int verify(char dna[]){
 	int i = 0;
 	while( dna[i] != '\0'){
-		if(dna[i] != 'A' || dna[i] != 'C' || dna[i] != 'T' || dna[i] != 'G'){
+		if(dna[i] != 'A' && dna[i] != 'C' && dna[i] != 'T' && dna[i] != 'G'){
 			return -1;
 		}
+		i++;
 	}
 	return 1;
 }
