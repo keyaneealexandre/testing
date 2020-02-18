@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-int find (char dna[], char therons[]);
 int verify(char dna[]);
+void find (char dna[], char therons[]);
 
 int main() {
 
@@ -17,7 +17,9 @@ int main() {
 	if(verify(dna) == -1){
 		return -1
 	}
-	find(dna, threons);
+	else{
+		find(dna[], char threons);
+	}
 
 
 
@@ -31,7 +33,7 @@ int main() {
 
 }
 
-int find(char dna[], char threons[]){
+void find(char dna[], char threons[]){
 	int found;
 	int i = 0;
 	int times = 0;
@@ -66,7 +68,7 @@ int find(char dna[], char threons[]){
 	}
 	if(times == 0){
 		//printf("%d\n", found);
-		return -1;
+		printf("-2");
 	}
 }
 
