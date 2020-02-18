@@ -19,7 +19,7 @@ int main() {
 	//printf("%s", dna);
 
 	if(verify(dna) == -1){
-		printf("-1");
+		printf("-1\n");
 		return -1;
 	}
 	else{
