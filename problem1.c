@@ -18,7 +18,7 @@ int main() {
 		return -1;
 	}
 	else{
-		find(dna[], char threons[]);
+		find(dna, threons);
 	}
 
 
@@ -47,10 +47,10 @@ void find(char dna[], char threons[]){
 		int k;
 		int m = 0;
 		for(k = 0; k < 4; k ++){
-			if(threons[m] == dna[m]) {     // if first character of search string matches
+			if(threons[m] == temp[m]) {     // if first character of search string matches
 			// keep on searching
 				while(threons[m] !='\0') {
-					if(threons[m] == dna[m]){
+					if(threons[m] == temp[m]){
 						m++;
 					}
 				}
