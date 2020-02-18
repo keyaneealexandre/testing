@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-int verify(char * dna[]);
-void find (char * dna[], char * therons[]);
+int verify(char dna[]);
+void find (char dna[], char * therons[]);
 
 int main() {
 
@@ -33,25 +33,25 @@ int main() {
 
 }
 
-int verify(char * dna[]){
+int verify(char dna[]){
 	int i = 0;
-	while( * dna[i] != '\0'){
-		if(* dna[i] != 'A' || * dna[i] != 'C' || * dna[i] != 'T' || * dna[i] != 'G'){
+	while( dna[i] != '\0'){
+		if(dna[i] != 'A' || dna[i] != 'C' || dna[i] != 'T' || dna[i] != 'G'){
 			return -1;
 		}
 	}
 	return 1;
 }
 
-void find(char * dna[], char * threons[]){
+void find(char dna[], char * threons[]){
 	int found;
 	int i = 0;
 	int times = 0;
 	char temp [3];
-	while(* dna[i] != '\0'){
+	while(dna[i] != '\0'){
 		int j;
 		for(j = 0; j < 3; j++){
-			temp[j] = * dna [i];
+			temp[j] = dna [i];
 			i++;
 		}
 		int k;
