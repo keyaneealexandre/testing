@@ -51,39 +51,12 @@ int verify(char dna[]){
 
 void find(char dna[], char * threons[]){
 	int found;
-	int i = 0;
-	int times = 0;
-	char temp [3];
-	while(dna[i] != '\0'){
-		int j;
-		for(j = 0; j < 3; j++){
-			temp[j] = dna [i];
-			i++;
-		}
-		int k;
-		int m = 0;
-		for(k = 0; k < 4; k ++){
-			if(* threons[m] == temp[m]) {     // if first character of search string matches
-			// keep on searching
-				while(* threons[m] !='\0') {
-					if(* threons[m] == temp[m]){
-						m++;
-					}
-				}
-				if(m == 3){
-					found = j;
-					printf("%d\n", found);
-					times++;
-				}
-				else{
-					m = 0;
-					found = 0;
-        		}
-			}
-		}
+	int i;
+	//int times = 0;
+	//char temp [3];
+	for(i = 0; i < 4; i++){
+		char *position_ptr = strchr(dna, * threons[i]);
+		int position = (position_ptr == NULL ? -2 : position_ptr - dna);
 	}
-	if(times == 0){
-		//printf("%d\n", found);
-		printf("-2");
-	}
+
 }
