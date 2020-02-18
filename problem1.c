@@ -15,10 +15,10 @@ int main() {
 	//read up to 9999 characters
 	scanf("%9999s", dna);
 	if(verify(dna) == -1){
-		return -1
+		return -1;
 	}
 	else{
-		find(dna[], char threons);
+		find(dna[], char threons[]);
 	}
 
 
@@ -78,9 +78,6 @@ int verify(char dna[]){
 		if(dna[i] != 'A' || dna[i] != 'C' || dna[i] != 'T' || dna[i] != 'G'){
 			return -1;
 		}
-		else{
-			return 1;
-		}
-
 	}
+	return 1;
 }
