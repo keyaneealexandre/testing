@@ -3,7 +3,7 @@
 #include <string.h>
 
 int verify(char dna[]);
-void find (char dna[], char therons[]);
+void find (char dna[], char * therons[]);
 
 int main() {
 
@@ -33,7 +33,7 @@ int main() {
 
 }
 
-void find(char dna[], char threons[]){
+void find(char dna[], char * threons[]){
 	int found;
 	int i = 0;
 	int times = 0;
