@@ -25,15 +25,6 @@ int main() {
 	else{
 		find(dna, threons);
 	}
-
-
-
-	/*
-	TODO: add your code here (or in the additional
-	functions that are called from here).
-	*/
-
-
 	return 0;
 
 }
@@ -53,10 +44,22 @@ void find(char dna[], char * threons[]){
 	int found;
 	int i;
 	//int times = 0;
-	//char temp [3];
-	for(i = 0; i < 4; i++){
-		char *position_ptr = strchr(dna, * threons[i]);
-		int position = (position_ptr == NULL ? -2 : position_ptr - dna);
+	char temp [3];
+	for(i = 0; i < strlen(dna); i+=3){
+		strncpy(temp, &dna[i], 3);
+		temp[3] = '\0';
+		int j;
+		//printf("%s\n", temp);
+		for(j = 0; j < 4; j++){
+			//printf("%s\n", threons[j]);
+			if(strcmp (temp, threons[j]) == 0){
+				found = i;
+				printf("%d\n", found);
+			}
+		}
+	}
+	if(found == 0){
+			printf("-2");
 	}
 
 }
