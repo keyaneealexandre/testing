@@ -42,6 +42,7 @@ int verify(char dna[]){
 
 void find(char dna[], char * threons[]){
 	int found;
+	int times;
 	int i;
 	//int times = 0;
 	char temp [3];
@@ -54,11 +55,12 @@ void find(char dna[], char * threons[]){
 			//printf("%s\n", threons[j]);
 			if(strcmp (temp, threons[j]) == 0){
 				found = i;
+				times++;
 				printf("%d\n", found);
 			}
 		}
 	}
-	if(found == 0){
+	if(times == 0){
 			printf("-2");
 	}
 
