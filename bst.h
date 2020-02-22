@@ -30,6 +30,7 @@ void add ( bst_node ** root, char * word );
  */
 void inorder ( bst_node * root ) ;
 
+
 /* Removes the node with the smallest value
  * in the tree.
  * Parameters:
@@ -39,6 +40,7 @@ void inorder ( bst_node * root ) ;
  *  NULL if no node was removed.
  */
 char * removeSmallest (  bst_node ** root );
+
 
 /* Removes the node with the largest value
  * in the tree.
@@ -56,10 +58,44 @@ char * removeLargest (  bst_node ** root );
 // Add other declarations below. //
 ///////////////////////////////////
 
+bst_node *addRecurse(bst_node *root, char *word);
 
 
+/* creates a new node.
+ * Parameter:
+ *  data - the data for the new node
+ * Return:
+ *  new node
+ */
+ bst_node * newNode(char * data);
 
 
+/* Removes the node specify node in the tree
+ * Parameters:
+ *  root - the pointer to the root of the tree
+ *  data - the data of the node to remove
+ * Return value:
+ *  the string from the removed node or
+ *  NULL if no node was removed.
+ */
+bst_node * removeNode(bst_node *root, char *data);
 
+
+/* finds smallest node
+ * Parameter:
+ *  root - the pointer to the root of the tree
+ * Return:
+ *  smallest node
+ */
+bst_node *smallest(bst_node *root);
+
+
+/* finds largest node
+ * Parameter:
+ *  root - the pointer to the root of the tree
+ * Return:
+ *  largest node
+ */
+bst_node *largest(bst_node *root);
 
 #endif
