@@ -58,7 +58,7 @@ char * removeLargest (  bst_node ** root );
 // Add other declarations below. //
 ///////////////////////////////////
 
-bst_node *addRecurse(bst_node *root, char *word);
+//bst_node *addRecurse(bst_node **root, char *word, bst_node *node);
 
 
 /* creates a new node.
