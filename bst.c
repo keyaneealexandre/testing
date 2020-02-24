@@ -40,13 +40,14 @@ void inorder ( bst_node * root ) {
     if (root != NULL)
     {
         inorder(root->left);
-        printf("%s\n", root->data);
+        printf("%s ", root->data);
         inorder(root->right);
     }
 }
 
 
 bst_node * removeNode(bst_node *root, char *data) {
+    //printf("here in removeNode\n");
  if (root == NULL) {
      return NULL;
   }
@@ -57,6 +58,8 @@ bst_node * removeNode(bst_node *root, char *data) {
   } else {
      // case 1: no children
      if (root->left == NULL && root->right == NULL) {
+        //printf("%s\n", root->data);
+        return root;
         free(root); // wipe out the memory, in C, use free function
         root = NULL;
      }
@@ -64,56 +67,68 @@ bst_node * removeNode(bst_node *root, char *data) {
      else if (root->left == NULL) {
         bst_node *temp = root; // save current node as a backup
         root = root->right;
+        //printf("%s\n", temp->data);
+        return temp;
         free(temp);
      }
      // case 3: one child (left)
      else if (root->right == NULL) {
         bst_node *temp = root; // save current node as a backup
         root = root->left;
+        //printf("%s\n", temp->data);
+        return temp;
         free(temp);
      }
      // case 4: two children
      else {
         bst_node *temp = smallest(root->right); // find minimal value of right sub tree
         root->data = temp->data; // duplicate the node
+        //printf("%s\n", temp->data);
+        return temp;
         root->right = removeNode(root->right, temp->data); // delete the duplicate node
      }
   }
+  //printf("%s\n", root->data);
   return root; // parent node can update reference
 }
 
+
 bst_node *smallest(bst_node *root){
-    if(root == NULL){
-        return root;
+    //printf("here in smallest\n");
+    //bst_node *current = root;
+    while(root && root->left != NULL){
+        root = root->left;
     }
-    else{
-        return smallest(root->left);
-    }
+    printf("%s\n", root->data);
     return root;
 }
 
 char * removeSmallest (bst_node ** root ){
+    //printf("here in removeSmallest\n");
     //root = smallest(*root);
     //root = (*root);
-    (*root) = removeNode( smallest(*root), (*root)->data);
-    return (*root)->data;
+     bst_node *smallestNode = smallest(*root);
+     //printf("%s\n", smallestNode->data);
+     //root = &smallestNode;
+     //printf("%s\n", smallestNode->data);
+     return (removeNode((*root), smallestNode->data))->data;
+    //return (*root)->data;
+    //return NULL;
 }
 
 bst_node *largest(bst_node *root){
-    if(root == NULL){
-        return root;
+    while(root && root->right != NULL){
+        root = root->right;
     }
-    else{
-        return largest(root->right);
-    }
+    printf("%s\n", root->data);
     return root;
 }
 
 
 char * removeLargest ( bst_node ** root ){
-
-    (*root) = removeNode( largest(*root), (*root)->data);
-    return (*root)->data;
+    bst_node *largestNode = largest(*root);
+    //(*root) = removeNode( largest(*root), (*root)->data);
+    return (removeNode((*root), largestNode->data))->data;
 }
 
 
