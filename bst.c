@@ -6,40 +6,41 @@
 ///typedef char (*comparer)(char, char);//used to compare two chars
 
 
-
+//printf("-2");
 void add ( bst_node ** root, char *word ){
-    //strcpy(root, addRecurse((*root), word));
-    addRecurse((*root), word);
-    //root = *root;
-
-}
-
-bst_node *addRecurse(bst_node *root, char *word){
-    if(root == NULL)
+    //printf("here in add");
+    if(*root == NULL)
     {
-        root = (bst_node*)malloc(sizeof(bst_node));
+        bst_node *current = (bst_node*)malloc(sizeof(bst_node));
         //strcpy(root->data, word);
-        root->data = word;
-        root->left = NULL;
-        root->right = NULL;
+        current->data = word;
+        current->left = NULL;
+        current->right = NULL;
+       // printf("%s\n", current->data);
+        *root = current;
+        //return;
+        //printf("%s\n", (*root)->data);
     }
     /* Otherwise, recur down the tree */
-    else if (strcmp(word,root->data) < 0){
-        //strcpy(root->left, add(root->left, word));
-        root->left  = addRecurse(root->left, word);
+    else if (strcmp(word, (*root)->data) < 0){
+        //strcpy(current->left, add(current->left, word));
+        //root = &(*root)->left;
+        add(&((*root)->left), word);
     }
     else{
-        //strcpy(root->right, add(root->right, word));
-        root->right = addRecurse(root->right, word);
+        //strcpy(current->right, add(current->right, word));
+        //root = &(*root)->right;
+        add(&((*root)->right), word);
     }
-    return root;
+    //return node;
 }
+
 
 void inorder ( bst_node * root ) {
     if (root != NULL)
     {
         inorder(root->left);
-        printf("%s \n", root->data);
+        printf("%s\n", root->data);
         inorder(root->right);
     }
 }
