@@ -69,18 +69,6 @@ char * removeLargest (  bst_node ** root );
  */
  bst_node * newNode(char * data);
 
-
-/* Removes the node specify node in the tree
- * Parameters:
- *  root - the pointer to the root of the tree
- *  data - the data of the node to remove
- * Return value:
- *  the string from the removed node or
- *  NULL if no node was removed.
- */
-bst_node * removeNode(bst_node *root, char *data);
-
-
 /* finds smallest node
  * Parameter:
  *  root - the pointer to the root of the tree
