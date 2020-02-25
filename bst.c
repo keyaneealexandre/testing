@@ -3,6 +3,14 @@
 #include <string.h>
 #include "bst.h"
 
+/*
+ * This program performs basic operations on a binary search tree.
+ * It reads a sequence of instructions from the standard input stream
+ * and outputs the results to the standard output stream.
+ * Author: Keyanee Alexandre
+ *
+ */
+
 
 void add ( bst_node ** root, char *word ){
     if(*root == NULL)
@@ -30,42 +38,9 @@ void inorder ( bst_node * root ) {
         printf("%s ", root->data);
         inorder(root->right);
     }
+    return;
 }
 
-
-bst_node * removeNode(bst_node *root, char *data) {
- if (root == NULL) {
-     return NULL;
-  }
-  if (strcmp(data,root->data) < 0) {  // data is in the left sub tree.
-      root->left = removeNode(root->left, data);
-  }
-  else if (strcmp(data,root->data) > 0) { // data is in the right sub tree.
-      root->right = removeNode(root->right, data);
-  }
-  else {
-     // node with only one child or no child
-        if (root->left == NULL)
-        {
-            bst_node *temp = root->right;
-            free(root);
-            return temp;
-        }
-        else if (root->right == NULL)
-        {
-            bst_node *temp = root->left;
-            free(root);
-            return temp;
-        }
-
-        // node with two children: Get the inorder successor (smallest
-        // in the right subtree)
-        bst_node* temp = smallest(root->right);
-        root->data = temp->data;
-        root->right = removeNode(root->right, temp->data);
-  }
-  return root; // parent node can update reference
-}
 
 
 bst_node *smallest(bst_node *root){
@@ -75,24 +50,72 @@ bst_node *smallest(bst_node *root){
     return root;
 }
 
+
+
 char * removeSmallest (bst_node ** root ){
-     bst_node *smallestNode = smallest(*root);
-     //printf("%s\n", ((removeNode((*root), smallestNode->data))->data));
-     return (removeNode((*root), smallestNode->data))->data;
-}
-
-bst_node *largest(bst_node *root){
-    while(root && root->right != NULL){
-        root = root->right;
+    if((*root)==NULL){
+        return NULL;
     }
-    return root;
-}
+    else if((*root)->left != NULL){
+        return removeSmallest(&((*root)->left));
+    }
+    else{
+        if ((*root)->left == NULL)
+        {
+            char * toReturn = (*root)->data;
+            bst_node *temp = *root;
+            *root = (*root)->right;
+            free(temp);
+            return toReturn;
+        }
+        else if ((*root)->right == NULL)
+        {
+            char * toReturn = (*root)->data;
+            bst_node *temp = *root;
+            *root = (*root)->left;
+            free(temp);
+            return toReturn;
+        }
+        char * toReturn = (*root)->data;
+        bst_node* temp = smallest((*root)->right);
+        (*root)->data = temp->data;
+        (*root)->right = removeSmallest(&((*root)->left));
+        return toReturn;
+    }
 
+}
 
 char * removeLargest ( bst_node ** root ){
-    bst_node *largestNode = largest(*root);
-    //printf("%s\n", ((removeNode((*root), largestNode->data))->data));
-    return (removeNode((*root), largestNode->data))->data;
+   if((*root)==NULL){
+        return NULL;
+    }
+    else if((*root)->right != NULL){
+        return removeLargest(&((*root)->right));
+    }
+    else{
+        if ((*root)->left == NULL)
+        {
+            char * toReturn = (*root)->data;
+            bst_node *temp = *root;
+            *root = (*root)->right;
+            free(temp);
+            return toReturn;
+        }
+        else if ((*root)->right == NULL)
+        {
+            char * toReturn = (*root)->data;
+            bst_node *temp = *root;
+            *root = (*root)->left;
+            free(temp);
+            return toReturn;
+        }
+        char * toReturn = (*root)->data;
+        printf("%s\n", toReturn);
+        bst_node* temp = smallest((*root)->right);
+        (*root)->data = temp->data;
+        (*root)->right = removeLargest(&((*root)->right));
+        return toReturn;
+    }
 }
 
 
